@@ -11,7 +11,7 @@ flowchart BT
 ```
 
 - If the user access `icanhazip.com` or `ifconfig.me`, `proxy` will use `xray`
-- If the user access `httpbin.org` or `ipecho.net`, `proxy` will use `xray`
+- If the user access `httpbin.org` or `ipecho.net`, `proxy` will use `squid`
 
 ```sh
 # Use squid direct
