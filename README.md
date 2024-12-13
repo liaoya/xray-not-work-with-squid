@@ -26,3 +26,20 @@ curl --proxy http://localhost:1080 -Lv http://httpbin.org/get
 # proxy using xray succeed
 curl --proxy http://localhost:1080 -Lv http://ifconfig.me
 ```
+
+For `curl --proxy http://localhost:1080 -Lv http://httpbin.org/get`, I found the following
+
+```text
+1734059326.941      1 172.30.0.4 TCP_DENIED_ABORTED/403 316 CONNECT httpbin.org:80 - HIER_NONE/- text/html
+1734059326.942      1 172.30.0.4 TCP_DENIED_ABORTED/403 316 CONNECT httpbin.org:80 - HIER_NONE/- text/html
+1734059327.049      3 172.30.0.4 TCP_DENIED_ABORTED/403 316 CONNECT httpbin.org:80 - HIER_NONE/- text/html
+1734059327.257      4 172.30.0.4 TCP_DENIED_ABORTED/403 316 CONNECT httpbin.org:80 - HIER_NONE/- text/html
+1734059327.564      4 172.30.0.4 TCP_DENIED_ABORTED/403 316 CONNECT httpbin.org:80 - HIER_NONE/- text/html
+```
+
+## How to use
+
+Run `docker compose down -v; docker compose up -d` and it require the following packages on Ubuntu
+
+- `docker.io`
+- `docker-compose-v2`
