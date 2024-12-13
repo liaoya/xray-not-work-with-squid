@@ -1,0 +1,33 @@
+---
+version: "3"
+name: "test"
+services:
+  proxy:
+    hostname: proxy
+    image: docker.io/teddysun/xray:24.11.30
+    ports:
+      - 1080:1080
+    restart: always
+    volumes:
+      - ./proxy.json:/etc/xray/config.json
+
+  xray:
+    hostname: xray
+    image: docker.io/teddysun/xray:24.11.30
+    ports:
+      - 1081:1081
+    restart: always
+    volumes:
+      - ./xray.json:/etc/xray/config.json
+
+  squid:
+    hostname: squid
+    image: docker.io/yaekee/squid:6.9-r0
+    environment:
+      - CLEAN=0
+      - LOG_LEVEL=1
+    ports:
+      - "3128:3128"
+    restart: always
+    volumes:
+      - ./squid.conf:/etc/squid/squid.conf:ro

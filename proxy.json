@@ -1,0 +1,60 @@
+{
+  "inbounds": [
+    {
+      "listen": "0.0.0.0",
+      "port": 1080,
+      "protocol": "http"
+    }
+  ],
+  "log": {
+    "loglevel": "debug"
+  },
+  "outbounds": [
+    {
+      "protocol": "freedom",
+      "tag": "direct"
+    },
+    {
+      "protocol": "http",
+      "settings": {
+        "servers": [
+          {
+            "address": "squid",
+            "port": 3128
+          }
+        ]
+      },
+      "tag": "squid"
+    },
+    {
+      "protocol": "http",
+      "settings": {
+        "servers": [
+          {
+            "address": "xray",
+            "port": 1081
+          }
+        ]
+      },
+      "tag": "xray"
+    }
+  ],
+  "routing": {
+    "rules": [
+      {
+        "domain": [
+          "httpbin.org",
+          "ipecho.net"
+        ],
+        "outboundTag": "squid"
+      },
+      {
+        "domain": [
+          "icanhazip.com",
+          "ifconfig.me"
+        ],
+        "outboundTag": "xray"
+      }
+    ]
+  }
+}
