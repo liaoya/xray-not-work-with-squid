@@ -1,5 +1,9 @@
 # README
 
+The github ticket is [xray does not work with squid outbound proxy](https://github.com/XTLS/Xray-core/issues/4171). This is not Xray's issue, it always use `CONNECT` and squid deny CONNECT for non SSL port.
+Remove `http_access deny CONNECT !SSL_ports` in `squid.conf` can solve this issue.
+But this is out of my control.
+
 This repo is used to reproduce the issue xray does not work with squid outbound proxy. I setup the following environment to test. The service list comes from <https://stackoverflow.com/questions/30385254/getting-my-servers-requesting-ip-address-from-an-outgoing-curl-request>
 
 The topology are
